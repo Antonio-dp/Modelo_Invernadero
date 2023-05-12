@@ -4,7 +4,8 @@
  */
 package interfaces;
 
-import Entidades.Sensor;
+import Entidades.Alarma;
+import Entidades.Registro;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -12,10 +13,7 @@ import org.bson.types.ObjectId;
  *
  * @author tonyd
  */
-public interface ISensorDAO {
-    public void agregarSensor(Sensor sensor);
-    public void actualizarSensor(Sensor sensor);
-    public void eliminarSensor(Sensor sensor);
-    public List<Sensor> consultarTodos();
-    public Sensor consultarSensor(ObjectId idSensor);
+public interface IRegistrosDAO {
+    public void agregarRegistro(Registro registro);
+    public List<Registro> consultarTodos();
 }

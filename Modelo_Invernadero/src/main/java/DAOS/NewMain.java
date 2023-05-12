@@ -4,6 +4,7 @@
  */
 package DAOS;
 
+import Entidades.Alarma;
 import Entidades.Sensor;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -22,11 +23,15 @@ public class NewMain {
      */
     public static void main(String[] args) {
         Sensor sen = new Sensor("A15", "Sensor TEMPERATURA B18A");
+        Alarma alarma = new Alarma("JOTO", (float) 50.0, sen);
         IConexionBD conexion = new ConexionBD();
         MongoDatabase baseDatos = conexion.crearConexion();
-        MongoCollection<Sensor> dao = baseDatos.getCollection("sensores", Sensor.class);
-        
-        dao.insertOne(sen);
+        MongoCollection<Alarma> dao = baseDatos.getCollection("alarmas", Alarma.class);
+        MongoCollection<Sensor> dao2 = baseDatos.getCollection("sensores", Sensor.class);
+        SensorDAO sensorDAO = new SensorDAO(conexion);
+        dao2.insertOne(sen);
+        sen = sensorDAO.consultarSensor(sen.getIdSensor());
+        dao.insertOne(alarma);
     }
 
 }
