@@ -30,8 +30,8 @@ public class NewMain {
         MongoCollection<Sensor> dao2 = baseDatos.getCollection("sensores", Sensor.class);
         SensorDAO sensorDAO = new SensorDAO(conexion);
         dao2.insertOne(sen);
-        sen = sensorDAO.consultarSensor(sen.getIdSensor());
-        System.out.println(sensorDAO.consultarTodos().get(0).getIdSensor());
+        sen = sensorDAO.consultarSensor(sen.getId());
+        System.out.println(sensorDAO.consultarTodos().get(0).getId());
         dao.insertOne(alarma);
     }
 

@@ -39,7 +39,7 @@ public class SensorDAO implements ISensorDAO {
 
     @Override
     public void actualizarSensor(Sensor sensor) {
-        Document filtro = new Document("_id", sensor.getIdSensor());
+        Document filtro = new Document("_id", sensor.getId());
         Document cambios = new Document()
                 .append("modelo", sensor.getModelo())
                 .append("zona", sensor.getZona());
@@ -48,7 +48,7 @@ public class SensorDAO implements ISensorDAO {
 
     @Override
     public void eliminarSensor(Sensor sensor) {
-        this.getCollection().deleteOne(new Document("_id", sensor.getIdSensor()));
+        this.getCollection().deleteOne(new Document("_id", sensor.getId()));
     }
 
     @Override

@@ -39,7 +39,7 @@ public class AlarmaDAO implements IAlarmaDAO {
 
     @Override
     public void actualizarAlarma(Alarma alarma) {
-        Document filtro = new Document("_id", alarma.getIdAlarma());
+        Document filtro = new Document("_id", alarma.getId());
         Document cambios = new Document()
                 .append("limite", alarma.getLimite())
                 .append("sensor", alarma.getSensor())
@@ -50,7 +50,7 @@ public class AlarmaDAO implements IAlarmaDAO {
 
     @Override
     public void eliminarAlarma(Alarma alarma) {
-        this.getCollection().deleteOne(new Document("_id", alarma.getIdAlarma()));
+        this.getCollection().deleteOne(new Document("_id", alarma.getId()));
     }
 
     @Override
