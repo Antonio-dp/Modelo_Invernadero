@@ -31,6 +31,7 @@ public class NewMain {
         SensorDAO sensorDAO = new SensorDAO(conexion);
         dao2.insertOne(sen);
         sen = sensorDAO.consultarSensor(sen.getIdSensor());
+        System.out.println(sensorDAO.consultarTodos().get(0).getIdSensor());
         dao.insertOne(alarma);
     }
 
