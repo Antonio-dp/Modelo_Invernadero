@@ -42,6 +42,7 @@ public class SensorDAO implements ISensorDAO {
         Document filtro = new Document("_id", sensor.getId());
         Document cambios = new Document()
                 .append("modelo", sensor.getModelo())
+                .append("identificador", sensor.getIdentificador())
                 .append("zona", sensor.getZona());
         this.getCollection().updateOne(filtro, new Document("$set", cambios));
     }
