@@ -22,12 +22,10 @@ public class RegistrosDAO implements IRegistrosDAO {
     private IConexionBD conexion;
     private MongoDatabase baseDatos;
 
-    public RegistrosDAO(IConexionBD conexion, MongoDatabase baseDatos) {
+    public RegistrosDAO(IConexionBD conexion) {
         this.conexion = conexion;
         this.baseDatos = this.conexion.crearConexion();
     }
-    
-    
 
     private MongoCollection<Registro> getCollection() {
         return baseDatos.getCollection("registros", Registro.class);
