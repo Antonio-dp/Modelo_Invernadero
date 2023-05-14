@@ -5,6 +5,7 @@
 package interfaces;
 
 import Entidades.Alarma;
+import Entidades.Sensor;
 import java.util.List;
 import org.bson.types.ObjectId;
 
@@ -18,5 +19,5 @@ public interface IAlarmaDAO {
     public void actualizarAlarma(Alarma alarma);
     public void eliminarAlarma(Alarma alarma);
     public List<Alarma> consultarTodos();
-    public Alarma consultarAlarma(ObjectId idAlarma);
+    public List<Alarma> consultarAlarmasByIdSensor(ObjectId IdSensor);
 }

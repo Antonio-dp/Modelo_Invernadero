@@ -5,6 +5,7 @@
 package DAOS;
 
 import Entidades.Alarma;
+import Entidades.Sensor;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import interfaces.IAlarmaDAO;
@@ -41,7 +42,8 @@ public class AlarmaDAO implements IAlarmaDAO {
     public void actualizarAlarma(Alarma alarma) {
         Document filtro = new Document("_id", alarma.getId());
         Document cambios = new Document()
-                .append("limite", alarma.getLimite())
+                .append("limiteInferior", alarma.getLimiteInferior())
+                .append("limiteSuperior", alarma.getLimiteSuperior())
                 .append("sensor", alarma.getSensor())
                 .append("tipo", alarma.getTipo());
         this.getCollection().updateOne(filtro, new Document("$set", cambios));
@@ -58,13 +60,14 @@ public class AlarmaDAO implements IAlarmaDAO {
         return this.getCollection().find().into(new ArrayList());
     }
 
+
     @Override
-    public Alarma consultarAlarma(ObjectId idAlarma) {
-        List<Alarma> alarmas = this.getCollection().find(new Document("_id", idAlarma)).into(new ArrayList());
+    public List<Alarma> consultarAlarmasByIdSensor(ObjectId idSensor) {
+        List<Alarma> alarmas = this.getCollection().find(new Document("sensor", idSensor)).into(new ArrayList());
         if(alarmas.isEmpty()){
             return null;
         }
-        return alarmas.get(0);
+        return alarmas;
     }
 
 }

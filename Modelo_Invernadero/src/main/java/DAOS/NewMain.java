@@ -11,6 +11,8 @@ import com.mongodb.client.MongoDatabase;
 import conexiones.ConexionBD;
 import interfaces.IConexionBD;
 import interfaces.ISensorDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,17 +24,29 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Sensor sen = new Sensor("A15", "Sensor TEMPERATURA B18A");
-        Alarma alarma = new Alarma("JOTO", (float) 50.0, sen);
+        Sensor sen = new Sensor("A15", "Sensor Humedad B18A");
         IConexionBD conexion = new ConexionBD();
         MongoDatabase baseDatos = conexion.crearConexion();
         MongoCollection<Alarma> dao = baseDatos.getCollection("alarmas", Alarma.class);
         MongoCollection<Sensor> dao2 = baseDatos.getCollection("sensores", Sensor.class);
-        SensorDAO sensorDAO = new SensorDAO(conexion);
+        AlarmaDAO sensorDAO = new AlarmaDAO(conexion);
         dao2.insertOne(sen);
-        sen = sensorDAO.consultarSensor(sen.getId());
-        System.out.println(sensorDAO.consultarTodos().get(0).getId());
-        dao.insertOne(alarma);
+        Alarma alarma = new Alarma("PIT", (float) 5.0, (float) 45.0, sen.getId());
+        Alarma alarma1 = new Alarma("SUEN",  (float) 5.0, (float) 45.0, sen.getId());
+        Alarma alarma2 = new Alarma("dI ALG",  (float) 5.0, (float) 45.0, sen.getId());
+        Alarma alarma3 = new Alarma("E",  (float) 5.0, (float) 45.0, sen.getId());
+        List<Alarma> alarmas = new ArrayList();
+        alarmas.add(alarma);
+        alarmas.add(alarma1);
+        alarmas.add(alarma2);
+        alarmas.add(alarma3);
+
+        dao.insertMany(alarmas);
+        
+        System.out.println(sensorDAO.consultarAlarmasByIdSensor(sen.getId()));
+        //sen = sensorDAO.consultarSensor(sen.getId());
+        //System.out.println(sen.getId());
+        //dao.insertMany(alarmas);
     }
 
 }
