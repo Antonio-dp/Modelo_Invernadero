@@ -17,5 +17,5 @@ public interface ISensorDAO {
     public void actualizarSensor(Sensor sensor);
     public void eliminarSensor(Sensor sensor);
     public List<Sensor> consultarTodos();
-    public Sensor consultarSensor(String idSensor);
+    public Sensor consultarSensor(ObjectId idSensor);
 }
