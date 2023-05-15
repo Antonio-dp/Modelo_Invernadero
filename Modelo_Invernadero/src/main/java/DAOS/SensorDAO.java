@@ -58,7 +58,7 @@ public class SensorDAO implements ISensorDAO {
     }
 
     @Override
-    public Sensor consultarSensor(ObjectId idSensor) {
+    public Sensor consultarSensor(String idSensor) {
         List<Sensor> sensores = this.getCollection().find(new Document("_id", idSensor)).into(new ArrayList());
         if(sensores.isEmpty()){
             return null;
