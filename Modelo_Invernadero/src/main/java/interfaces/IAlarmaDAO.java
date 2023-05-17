@@ -19,5 +19,4 @@ public interface IAlarmaDAO {
     public void actualizarAlarma(Alarma alarma);
     public void eliminarAlarma(Alarma alarma);
     public List<Alarma> consultarTodos();
-    public List<Alarma> consultarAlarmasByIdSensor(ObjectId IdSensor);
 }

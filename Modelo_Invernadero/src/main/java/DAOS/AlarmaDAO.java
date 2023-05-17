@@ -44,7 +44,6 @@ public class AlarmaDAO implements IAlarmaDAO {
         Document cambios = new Document()
                 .append("limiteInferior", alarma.getLimiteInferior())
                 .append("limiteSuperior", alarma.getLimiteSuperior())
-                .append("sensor", alarma.getSensor())
                 .append("tipo", alarma.getTipo());
         this.getCollection().updateOne(filtro, new Document("$set", cambios));
 
@@ -58,16 +57,6 @@ public class AlarmaDAO implements IAlarmaDAO {
     @Override
     public List<Alarma> consultarTodos() {
         return this.getCollection().find().into(new ArrayList());
-    }
-
-
-    @Override
-    public List<Alarma> consultarAlarmasByIdSensor(ObjectId idSensor) {
-        List<Alarma> alarmas = this.getCollection().find(new Document("sensor", idSensor)).into(new ArrayList());
-        if(alarmas.isEmpty()){
-            return null;
-        }
-        return alarmas;
     }
 
 }
