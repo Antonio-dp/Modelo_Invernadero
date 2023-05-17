@@ -44,7 +44,8 @@ public class AlarmaDAO implements IAlarmaDAO {
         Document cambios = new Document()
                 .append("limiteInferior", alarma.getLimiteInferior())
                 .append("limiteSuperior", alarma.getLimiteSuperior())
-                .append("tipo", alarma.getTipo());
+                .append("tipo", alarma.getTipo())
+                .append("correo", alarma.getCorreo());
         this.getCollection().updateOne(filtro, new Document("$set", cambios));
 
     }
